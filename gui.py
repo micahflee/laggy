@@ -1,7 +1,7 @@
 import sys
-from PyQt5 import QtCore, QtWidgets
+from PyQt4 import QtCore, QtGui
 
-class LaggyGui(QtWidgets.QWidget):
+class LaggyGui(QtGui.QWidget):
     STATE_IDLE = 0
     STATE_RECORDING = 1
 
@@ -14,14 +14,14 @@ class LaggyGui(QtWidgets.QWidget):
         #self.setWindowIcon(window_icon)
 
         # message log
-        self.message_log = QtWidgets.QListWidget()
+        self.message_log = QtGui.QListWidget()
 
         # record button
-        self.button = QtWidgets.QPushButton('Record Message')
+        self.button = QtGui.QPushButton('Record Message')
         self.button.clicked.connect(self.button_clicked)
 
         # main layout
-        layout = QtWidgets.QVBoxLayout()
+        layout = QtGui.QVBoxLayout()
         layout.addWidget(self.message_log)
         layout.addWidget(self.button)
         self.setLayout(layout)
@@ -45,10 +45,10 @@ class LaggyGui(QtWidgets.QWidget):
             # XXX: stop recording
 
     def log(self, msg):
-        item = QtWidgets.QListWidgetItem(msg)
+        item = QtGui.QListWidgetItem(msg)
         self.message_log.addItem(item)
 
 if __name__ == '__main__':
-    app = QtWidgets.QApplication(sys.argv)
+    app = QtGui.QApplication(sys.argv)
     window = LaggyGui()
     sys.exit(app.exec_())
